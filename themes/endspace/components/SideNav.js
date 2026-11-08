@@ -8,7 +8,8 @@ import { EndspacePlayer } from './EndspacePlayer'
 import NotionMenuIcon from './NotionMenuIcon'
 import {
   IconBrandX,
-  IconChevronDown
+  IconChevronDown,
+  IconMegaphone
 } from '@tabler/icons-react'
 import RadarFillIcon from 'remixicon-react/RadarFillIcon'
 import { getEndspaceActiveMenuName, getEndspaceMenuItems } from './menu'
@@ -77,7 +78,7 @@ const pathMatches = (asPath, path) => {
 export const SideNav = (props) => {
   const router = useRouter()
   const { siteInfo } = useGlobal()
-  const { customNav, customMenu } = props
+  const { customNav, customMenu, notice } = props
   const [isHovered, setIsHovered] = useState(false)
   const [activeTab, setActiveTab] = useState('Home')
   const [openSubMenuId, setOpenSubMenuId] = useState(null)
@@ -288,9 +289,33 @@ export const SideNav = (props) => {
       <div className="flex-shrink-0 flex flex-col justify-end h-auto pb-4">
         <div className={`mx-auto transition-[width] duration-300 ease-out ${isHovered ? 'w-[13.5rem]' : 'w-[3rem]'}`}>
           <div className={`overflow-visible border border-gray-200 bg-gray-100/95 shadow-sm transition-[border-radius] duration-200 ${isHovered ? 'h-[7rem] rounded-2xl px-3 py-2' : 'h-[6.75rem] rounded-full px-1 py-2'}`}>
-            {/* Music Player Section */}
-            <div className={`flex items-center justify-center ${isHovered ? 'h-[3rem]' : 'h-10'}`}>
-              <EndspacePlayer isExpanded={isHovered} embedded />
+            {/* Notice or Music Player: notice takes priority when configured */}
+            <div className={`flex items-center justify-center overflow-hidden ${isHovered ? 'h-[3rem]' : 'h-10'}`}>
+              {notice?.title ? (
+                <div
+                  className="w-full px-1.5 flex items-center gap-2 overflow-hidden"
+                  title={notice.title}
+                >
+                  <IconMegaphone
+                    size={16}
+                    className="flex-shrink-0 text-[var(--endspace-accent-yellow)]"
+                  />
+                  {isHovered ? (
+                    <div className="flex-1 min-w-0 overflow-hidden">
+                      <div className="text-xs font-bold leading-tight truncate text-[var(--endspace-text-primary)]">
+                        {notice.title}
+                      </div>
+                      {notice.summary && (
+                        <div className="text-[10px] leading-tight truncate text-[var(--endspace-text-muted)]">
+                          {notice.summary}
+                        </div>
+                      )}
+                    </div>
+                  ) : null}
+                </div>
+              ) : (
+                <EndspacePlayer isExpanded={isHovered} embedded />
+              )}
             </div>
 
             <div className={`mx-auto h-px bg-gray-300/80 transition-[width] duration-300 ease-out ${isHovered ? 'my-1.5 w-full' : 'my-2 w-5'}`} />
