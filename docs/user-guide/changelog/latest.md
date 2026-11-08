@@ -77,7 +77,7 @@
 
 - 主题的 RSS 订阅链接统一指向动态端点 `/api/rss`（支持 `?format=rss|atom|json`）：Notion 内容更新后，订阅源会随数据缓存失效与页面重建同步刷新，不再依赖重新部署。构建期生成的静态 `public/rss/feed.xml` 仍保留，兼容已订阅旧地址的读者。
 - 动态端点与构建期静态 feed 现在共用同一套生成逻辑（`buildFeed`）：全文输出（`RSS_FULL_CONTENT`）、作者邮箱、`SUB_PATH` 子路径与密码文章摘要保护在两条通道完全一致；`publishDay` 缺失时自动回退 `publishDate`，不再生成 Invalid Date。
-- endspace 主题：公告卡片现显示**最新一篇**公告，点击打开**左右交替时间线弹窗**查看全部公告存档（按发布时间倒序）。数据层 `fetchGlobalAllData` 新增 `notices` 数组（轻量字段 id/title/summary/publishDay），`notice` 保持最新一篇以兼容其他主题与既有消费方。
+- RSS 全文修复代码块缺失：NotionPage 的代码块组件原为 `ssr:false` 动态加载，服务端渲染（RSS 全文、裸 renderToString）时输出为空。现改为静态导入 react-notion-x 的 Code 组件（SSR 安全，高亮仍由客户端 prismjs/PrismMac 增强），RSS 全文与首屏 HTML 均包含完整代码内容；公式、内嵌数据库、Tweet 等仍为动态组件，在 RSS 中暂不渲染。
 
 ## 4.10.10 发布要点
 

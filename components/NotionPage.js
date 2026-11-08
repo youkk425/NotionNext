@@ -8,6 +8,7 @@ import 'katex/dist/katex.min.css'
 import dynamic from 'next/dynamic'
 import { useEffect, useRef } from 'react'
 import { NotionRenderer } from 'react-notion-x'
+import { Code } from 'react-notion-x/build/third-party/code'
 import OriginalityProof from './OriginalityProof'
 
 /**
@@ -232,14 +233,6 @@ function getMediumZoomMargin() {
   }
 }
 
-// 代码
-const Code = dynamic(
-  () =>
-    import('react-notion-x/build/third-party/code').then(m => {
-      return m.Code
-    }),
-  { ssr: false }
-)
 
 // 公式
 const Equation = dynamic(
