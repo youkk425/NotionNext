@@ -6,11 +6,8 @@ import { useGlobal } from '@/lib/global'
 import SmartLink from '@/components/SmartLink'
 import { EndspacePlayer } from './EndspacePlayer'
 import NotionMenuIcon from './NotionMenuIcon'
-import {
-  IconBrandX,
-  IconChevronDown,
-  IconMegaphone
-} from '@tabler/icons-react'
+import { IconBrandX, IconChevronDown } from '@tabler/icons-react'
+import BellFillIcon from 'remixicon-react/BellFillIcon'
 import RadarFillIcon from 'remixicon-react/RadarFillIcon'
 import { getEndspaceActiveMenuName, getEndspaceMenuItems } from './menu'
 
@@ -21,7 +18,6 @@ import BilibiliFillIcon from 'remixicon-react/BilibiliFillIcon'
 import TelegramFillIcon from 'remixicon-react/TelegramFillIcon'
 import InstagramFillIcon from 'remixicon-react/InstagramFillIcon'
 import YoutubeFillIcon from 'remixicon-react/YoutubeFillIcon'
-import LinkedinBoxFillIcon from 'remixicon-react/LinkedinBoxFillIcon'
 import WechatFillIcon from 'remixicon-react/WechatFillIcon'
 import GlobeFillIcon from 'remixicon-react/GlobeFillIcon'
 import MailFillIcon from 'remixicon-react/MailFillIcon'
@@ -296,7 +292,7 @@ export const SideNav = (props) => {
                   className="w-full px-1.5 flex items-center gap-2 overflow-hidden"
                   title={notice.title}
                 >
-                  <IconMegaphone
+                  <BellFillIcon
                     size={16}
                     className="flex-shrink-0 text-[var(--endspace-accent-yellow)]"
                   />
