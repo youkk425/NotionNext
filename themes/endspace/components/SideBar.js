@@ -1,8 +1,6 @@
 // import { siteConfig } from '@/lib/config'
 import SmartLink from '@/components/SmartLink'
-import TimeFillIcon from 'remixicon-react/TimeFillIcon'
-import FolderFillIcon from 'remixicon-react/FolderFillIcon'
-import PriceTag3FillIcon from 'remixicon-react/PriceTag3FillIcon'
+import { TimeFillIcon, FolderFillIcon, PriceTag3FillIcon } from './EndspaceIcons'
 // import CONFIG from '../config'
 
 /**

@@ -77,7 +77,7 @@
 
 - 主题的 RSS 订阅链接统一指向动态端点 `/api/rss`（支持 `?format=rss|atom|json`）：Notion 内容更新后，订阅源会随数据缓存失效与页面重建同步刷新，不再依赖重新部署。构建期生成的静态 `public/rss/feed.xml` 仍保留，兼容已订阅旧地址的读者。
 - 动态端点与构建期静态 feed 现在共用同一套生成逻辑（`buildFeed`）：全文输出（`RSS_FULL_CONTENT`）、作者邮箱、`SUB_PATH` 子路径与密码文章摘要保护在两条通道完全一致；`publishDay` 缺失时自动回退 `publishDate`，不再生成 Invalid Date。
-- endspace 主题：侧栏底部卡片（原音乐播放器位）改为优先显示 Notion 公告（type=Notice 的文章）——折叠时显示公告图标，悬停展开显示公告标题与摘要；未配置公告时回退音乐播放器。公告显示文字取自该文章的 summary 属性，在 Notion 中编辑即可更新。
+- endspace 主题：修复生产构建下主题加载失败并回退 example 的问题。根因是 SideNav 引用了未导入的 `LinkedinBoxFillIcon`（模块加载即抛 ReferenceError，导致整个主题在服务端无法加载）。同时将主题内全部 remixicon-react（纯 CJS 老包）图标替换为自包含的内联 SVG 组件，彻底消除 CJS/ESM interop 在 webpack 生产构建下的不稳定因素。
 
 ## 4.10.10 发布要点
 

@@ -7,21 +7,23 @@ import SmartLink from '@/components/SmartLink'
 import { EndspacePlayer } from './EndspacePlayer'
 import NotionMenuIcon from './NotionMenuIcon'
 import { IconBrandX, IconChevronDown } from '@tabler/icons-react'
-import BellFillIcon from 'remixicon-react/BellFillIcon'
-import RadarFillIcon from 'remixicon-react/RadarFillIcon'
+import {
+  BellFillIcon,
+  RadarFillIcon,
+  GithubFillIcon,
+  WeiboFillIcon,
+  BilibiliFillIcon,
+  TelegramFillIcon,
+  InstagramFillIcon,
+  YoutubeFillIcon,
+  LinkedinBoxFillIcon,
+  WechatFillIcon,
+  GlobeFillIcon,
+  MailFillIcon
+} from './EndspaceIcons'
 import { getEndspaceActiveMenuName, getEndspaceMenuItems } from './menu'
 
   // Social Icons (Solid)
-import GithubFillIcon from 'remixicon-react/GithubFillIcon'
-import WeiboFillIcon from 'remixicon-react/WeiboFillIcon'
-import BilibiliFillIcon from 'remixicon-react/BilibiliFillIcon'
-import TelegramFillIcon from 'remixicon-react/TelegramFillIcon'
-import InstagramFillIcon from 'remixicon-react/InstagramFillIcon'
-import YoutubeFillIcon from 'remixicon-react/YoutubeFillIcon'
-import WechatFillIcon from 'remixicon-react/WechatFillIcon'
-import GlobeFillIcon from 'remixicon-react/GlobeFillIcon'
-import MailFillIcon from 'remixicon-react/MailFillIcon'
-
 const OrcidIcon = ({ size = 16 }) => (
   <i
     className='fab fa-orcid'

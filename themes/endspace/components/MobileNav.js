@@ -14,16 +14,18 @@ import {
 } from '@tabler/icons-react'
 import { getEndspaceActiveMenuName, getEndspaceMenuItems } from './menu'
 // Social Icons (Solid)
-import GithubFillIcon from 'remixicon-react/GithubFillIcon'
-import WeiboFillIcon from 'remixicon-react/WeiboFillIcon'
-import BilibiliFillIcon from 'remixicon-react/BilibiliFillIcon'
-import TelegramFillIcon from 'remixicon-react/TelegramFillIcon'
-import InstagramFillIcon from 'remixicon-react/InstagramFillIcon'
-import YoutubeFillIcon from 'remixicon-react/YoutubeFillIcon'
-import LinkedinBoxFillIcon from 'remixicon-react/LinkedinBoxFillIcon'
-import WechatFillIcon from 'remixicon-react/WechatFillIcon'
-import GlobeFillIcon from 'remixicon-react/GlobeFillIcon'
-import MailFillIcon from 'remixicon-react/MailFillIcon'
+import {
+  GithubFillIcon,
+  WeiboFillIcon,
+  BilibiliFillIcon,
+  TelegramFillIcon,
+  InstagramFillIcon,
+  YoutubeFillIcon,
+  LinkedinBoxFillIcon,
+  WechatFillIcon,
+  GlobeFillIcon,
+  MailFillIcon
+} from './EndspaceIcons'
 
 const OrcidIcon = ({ size = 16 }) => (
   <i

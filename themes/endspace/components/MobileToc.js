@@ -3,8 +3,7 @@
 import throttle from 'lodash.throttle'
 import { uuidToId } from 'notion-utils'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import ListCheck2Icon from 'remixicon-react/ListCheck2Icon'
-import CloseFillIcon from 'remixicon-react/CloseFillIcon'
+import { ListCheck2Icon, CloseFillIcon } from './EndspaceIcons'
 
 /**
  * MobileToc Component - Mobile Table of Contents
