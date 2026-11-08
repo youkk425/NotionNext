@@ -5,7 +5,7 @@ import { handleEmailClick } from '@/lib/plugins/mailEncrypt'
 import { useGlobal } from '@/lib/global'
 import SmartLink from '@/components/SmartLink'
 import { EndspacePlayer } from './EndspacePlayer'
-import NotionMenuIcon from './NotionMenuIcon'
+import NoticeTimeline from './NoticeTimeline'
 import { IconBrandX, IconChevronDown } from '@tabler/icons-react'
 import {
   BellFillIcon,
@@ -76,12 +76,12 @@ const pathMatches = (asPath, path) => {
 export const SideNav = (props) => {
   const router = useRouter()
   const { siteInfo } = useGlobal()
-  const { customNav, customMenu, notice } = props
+  const { customNav, customMenu, notice, notices } = props
   const [isHovered, setIsHovered] = useState(false)
   const [activeTab, setActiveTab] = useState('Home')
   const [openSubMenuId, setOpenSubMenuId] = useState(null)
   const [indicatorStyle, setIndicatorStyle] = useState({ top: 0, opacity: 0 })
-  const navRef = useRef(null)
+  const [showNoticeModal, setShowNoticeModal] = useState(false)
   const itemRefs = useRef({})
   const emailIcon = useRef(null)
   
@@ -290,27 +290,29 @@ export const SideNav = (props) => {
             {/* Notice or Music Player: notice takes priority when configured */}
             <div className={`flex items-center justify-center overflow-hidden ${isHovered ? 'h-[3rem]' : 'h-10'}`}>
               {notice?.title ? (
-                <div
-                  className="w-full px-1.5 flex items-center gap-2 overflow-hidden"
+                <button
+                  type='button'
+                  onClick={() => setShowNoticeModal(true)}
+                  className='w-full px-1.5 flex items-center gap-2 overflow-hidden cursor-pointer group'
                   title={notice.title}
                 >
                   <BellFillIcon
                     size={16}
-                    className="flex-shrink-0 text-[var(--endspace-accent-yellow)]"
+                    className='flex-shrink-0 text-[var(--endspace-accent-yellow)] group-hover:scale-110 transition-transform'
                   />
                   {isHovered ? (
-                    <div className="flex-1 min-w-0 overflow-hidden">
-                      <div className="text-xs font-bold leading-tight truncate text-[var(--endspace-text-primary)]">
+                    <div className='flex-1 min-w-0 overflow-hidden'>
+                      <div className='text-xs font-bold leading-tight truncate text-[var(--endspace-text-primary)]'>
                         {notice.title}
                       </div>
                       {notice.summary && (
-                        <div className="text-[10px] leading-tight truncate text-[var(--endspace-text-muted)]">
+                        <div className='text-[10px] leading-tight truncate text-[var(--endspace-text-muted)]'>
                           {notice.summary}
                         </div>
                       )}
                     </div>
                   ) : null}
-                </div>
+                </button>
               ) : (
                 <EndspacePlayer isExpanded={isHovered} embedded />
               )}
@@ -383,6 +385,14 @@ export const SideNav = (props) => {
           </div>
         </div>
       </div>
+
+      {/* 公告时间线弹窗 */}
+      {showNoticeModal && (
+        <NoticeTimeline
+          notices={notices || []}
+          onClose={() => setShowNoticeModal(false)}
+        />
+      )}
     </div>
   )
 }
