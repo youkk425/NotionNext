@@ -5,6 +5,7 @@ import { handleEmailClick } from '@/lib/plugins/mailEncrypt'
 import { useGlobal } from '@/lib/global'
 import SmartLink from '@/components/SmartLink'
 import { EndspacePlayer } from './EndspacePlayer'
+import NotionMenuIcon from './NotionMenuIcon'
 import NoticeTimeline from './NoticeTimeline'
 import { IconBrandX, IconChevronDown } from '@tabler/icons-react'
 import {
@@ -82,6 +83,7 @@ export const SideNav = (props) => {
   const [openSubMenuId, setOpenSubMenuId] = useState(null)
   const [indicatorStyle, setIndicatorStyle] = useState({ top: 0, opacity: 0 })
   const [showNoticeModal, setShowNoticeModal] = useState(false)
+  const navRef = useRef(null)
   const itemRefs = useRef({})
   const emailIcon = useRef(null)
   
