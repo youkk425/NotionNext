@@ -6,6 +6,7 @@ import { useGlobal } from '@/lib/global'
 import SmartLink from '@/components/SmartLink'
 import { EndspacePlayer } from './EndspacePlayer'
 import NotionMenuIcon from './NotionMenuIcon'
+import NoticeTimeline from './NoticeTimeline'
 import {
   IconMenu2,
   IconX,
@@ -16,6 +17,7 @@ import { getEndspaceActiveMenuName, getEndspaceMenuItems } from './menu'
 // Social Icons (Solid)
 import {
   GithubFillIcon,
+  BellFillIcon,
   WeiboFillIcon,
   BilibiliFillIcon,
   TelegramFillIcon,
@@ -79,12 +81,12 @@ const pathMatches = (asPath, path) => {
 export const MobileNav = (props) => {
   const router = useRouter()
   const { siteInfo } = useGlobal()
-  const { customNav, customMenu } = props
+  const { customNav, customMenu, notice, notices } = props
   const [activeTab, setActiveTab] = useState('Home')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [openSubMenuId, setOpenSubMenuId] = useState(null)
+  const [showNoticeModal, setShowNoticeModal] = useState(false)
   const emailIcon = useRef(null)
-  
   // Get avatar from props or global context
   const avatarUrl = props?.siteInfo?.icon || siteInfo?.icon || siteConfig('AVATAR')
 
@@ -173,6 +175,18 @@ export const MobileNav = (props) => {
             </div>
           </SmartLink>
 
+          {/* Right: Notice Button + Hamburger */}
+          {notice?.title && (
+            <button
+              type="button"
+              onClick={() => setShowNoticeModal(true)}
+              className="w-12 h-14 flex items-center justify-center text-[var(--endspace-text-primary)] hover:text-[var(--endspace-accent-yellow)] transition-colors"
+              aria-label="查看公告"
+              title={notice.title}
+            >
+              <BellFillIcon size={22} />
+            </button>
+          )}
           {/* Right: Hamburger Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -307,6 +321,14 @@ export const MobileNav = (props) => {
 
       {/* Top spacer for content */}
       <div className="h-20 md:hidden" />
+
+      {/* 公告时间线弹窗 */}
+      {showNoticeModal && (
+        <NoticeTimeline
+          notices={notices || []}
+          onClose={() => setShowNoticeModal(false)}
+        />
+      )}
     </>
   )
 }
