@@ -1,4 +1,5 @@
-import BLOG from '@/blog.config'
+import { siteConfig } from '@/lib/config'
+import { fetchGlobalAllData } from '@/lib/db/SiteDataApi'
 import { clearDataCache } from '@/lib/cache/cache_manager'
 import {
   collectRevalidationPaths,
@@ -21,7 +22,13 @@ export default async function handler(req, res) {
       .status(405)
       .json({ ok: false, message: 'Method Not Allowed. Use POST.' })
   }
-  const token = process.env.REVALIDATION_TOKEN || BLOG.REVALIDATION_TOKEN
+  const locale = BLOG.LANG
+  const pageId = BLOG.NOTION_PAGE_ID
+  const pageIds = pageId.split(',')
+  const targetId = pageIds[0].includes(':') ? pageIds[0].split(':')[1] : pageIds[0]
+  const props = await fetchGlobalAllData({ from: 'revalidate-api', pageId: targetId, locale })
+  const NOTION_CONFIG = props?.NOTION_CONFIG
+  const token = process.env.REVALIDATION_TOKEN || BLOG.REVALIDATION_TOKEN || siteConfig('REVALIDATION_TOKEN', '', NOTION_CONFIG)
   if (!token)
     return res.status(503).json({
       ok: false,
