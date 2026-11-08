@@ -125,6 +125,35 @@ Typical validation before a PR: `yarn lint && yarn type-check && yarn test`.
   component-local.
 - **Client/server boundary**: `'use client'` marks client-only modules (e.g. `lib/config.js`).
 
+## Known Pitfalls（生产环境已知陷阱）
+
+- **RSS 双轨同源**：`lib/utils/rss.js` 导出共享的 `buildFeed(props)`。构建期
+  `generateRss`（写 `public/rss/feed.xml` 静态文件）与运行时 `/api/rss`
+  （`pages/api/rss.js`，进程内 10 分钟缓存 + CDN `s-maxage=600`）都复用它，保证
+  两条通道输出一致（全文 `RSS_FULL_CONTENT`、作者邮箱、`SUB_PATH`、密码文章摘要保护）。
+  各主题 RSS 链接一律指向 **`/api/rss`**（动态、随 revalidate 实时更新），静态 feed
+  仅作旧订阅地址兼容。改 RSS 生成逻辑只改 `buildFeed`，不要在两处各写一份。
+- **RSS 实时性链路**：Notion 内容更新 → `POST /api/revalidate {"all":true}`
+  （`Authorization: Bearer <REVALIDATION_TOKEN>`）→ `clearDataCache()` 轮换缓存
+  generation → 各页面重建，RSS 数据随之刷新。`REVALIDATION_TOKEN` 三来源优先级：
+  环境变量 > `blog.config.js` > **Notion Config 表同名字段**（未配置时接口返回 503）。
+- **公告（Notice）**：Notion 数据库 `type=Notice` 且 `status=Published` 的记录 →
+  `props.notice`（见 `lib/db/SiteDataApi.js`）。关闭公告 = 该记录 status 改为
+  Invisible/Draft；改内容 = 编辑该记录的 title/summary 属性。endspace 主题在左侧
+  底部卡片显示公告（优先于音乐播放器，未配置公告时回退播放器）。
+- **主题加载失败会静默回退 example**：`themes/theme.js` 动态加载 `<THEME>` 失败时
+  fallback 到 example 主题，页面照常渲染但**布局与配置主题完全不同**（服务端 props
+  里的 `NOTION_CONFIG.THEME` 仍正确）。排查「部署后布局变了」第一反应：查构建日志
+  的 `Failed to load theme` / `missing "LayoutBase"`。此类错误只会在**生产构建**
+  暴露（webpack 优化路径），本地 `yarn dev` 可能正常。曾因 SideNav 引用未导入的
+  图标变量（模块加载即抛 ReferenceError）导致端 space 全部回退 example。
+- **endspace 主题图标**：主题自带图标统一放
+  `themes/endspace/components/EndspaceIcons.js`（内联 SVG，props 为
+  `size`/`color`/`className`，与原 remixicon 组件兼容）。**不要再向主题引入
+  remixicon-react**（纯 CJS 老包 v1.0.0，生产 webpack 构建下 default import 有踩坑
+  记录）；改用 `@tabler/icons-react` 前先确认该图标导出名真实存在（曾因
+  `IconMegaphone` 不存在导致构建失败）。
+
 ## Important Files
 
 | File                               | Role                                                                      |
