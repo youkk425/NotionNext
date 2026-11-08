@@ -32,7 +32,7 @@ const SocialButton = () => {
       key: 'RSS_FEED',
       icon: 'fas fa-rss',
       label: 'RSS',
-      href: '/rss/feed.xml'
+      href: '/api/rss'
     })
   }
 

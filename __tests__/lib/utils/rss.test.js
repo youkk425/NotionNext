@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { generateRss, shouldGenerateRssForLocale } from '@/lib/utils/rss'
+import { buildFeed, generateRss, shouldGenerateRssForLocale } from '@/lib/utils/rss'
 import { getPostBlocks } from '@/lib/db/SiteDataApi'
 import { formatNotionBlock } from '@/lib/db/notion/getPostBlocks'
 import { adapterNotionBlockMap } from '@/lib/utils/notion.util'
@@ -158,5 +158,115 @@ describe('generateRss', () => {
     expect(
       shouldGenerateRssForLocale({ locale: 'en', defaultLocale: 'zh-CN' })
     ).toBe(false)
+  })
+})
+
+describe('buildFeed', () => {
+  const baseProps = {
+    NOTION_CONFIG: {
+      AUTHOR: 'author',
+      LANG: 'zh-CN',
+      SUB_PATH: 'sub',
+      CONTACT_EMAIL: ''
+    },
+    siteInfo: {
+      title: 'site',
+      description: 'desc',
+      link: 'https://example.com'
+    }
+  }
+
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
+  it('falls back to allPages filtering when latestPosts is absent', async () => {
+    await buildFeed({
+      ...baseProps,
+      allPages: [
+        {
+          type: 'Post',
+          status: 'Published',
+          id: 'new',
+          slug: 'new-post',
+          title: 'New',
+          summary: 's1',
+          publishDay: '2026-10-02'
+        },
+        {
+          type: 'Post',
+          status: 'Draft',
+          id: 'draft',
+          slug: 'draft',
+          title: 'Draft',
+          summary: 's2',
+          publishDay: '2026-10-01'
+        }
+      ]
+    })
+
+    expect(addItemMock).toHaveBeenCalledTimes(1)
+    expect(addItemMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        title: 'New',
+        link: 'https://example.com/new-post'
+      })
+    )
+  })
+
+  it('sorts fallback posts newest-first and caps at 20 items', async () => {
+    const allPages = Array.from({ length: 25 }, (_, i) => ({
+      type: 'Post',
+      status: 'Published',
+      id: `p${i}`,
+      slug: `p${i}`,
+      title: `P${i}`,
+      summary: `s${i}`,
+      publishDay: `2026-01-${String(i + 1).padStart(2, '0')}`
+    }))
+
+    await buildFeed({ ...baseProps, allPages })
+
+    expect(addItemMock).toHaveBeenCalledTimes(20)
+    expect(addItemMock.mock.calls[0][0]).toMatchObject({ title: 'P24' })
+  })
+
+  it('returns only the summary for password-protected posts', async () => {
+    await buildFeed({
+      ...baseProps,
+      latestPosts: [
+        {
+          id: 'locked',
+          slug: 'locked',
+          title: 'Locked',
+          summary: 'protected-summary',
+          password: '123',
+          publishDay: '2026-01-01'
+        }
+      ]
+    })
+
+    expect(getPostBlocks).not.toHaveBeenCalled()
+    expect(addItemMock).toHaveBeenCalledWith(
+      expect.objectContaining({ content: 'protected-summary' })
+    )
+  })
+
+  it('falls back to publishDate when publishDay is missing', async () => {
+    await buildFeed({
+      ...baseProps,
+      latestPosts: [
+        {
+          id: 'p1',
+          slug: 'p1',
+          title: 'P1',
+          summary: 'sum',
+          publishDate: '2026-05-20'
+        }
+      ]
+    })
+
+    const addedItem = addItemMock.mock.calls[0][0]
+    expect(addedItem.date.toISOString().startsWith('2026-05-20')).toBe(true)
   })
 })

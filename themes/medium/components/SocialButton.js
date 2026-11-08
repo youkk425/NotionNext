@@ -121,7 +121,7 @@ const SocialButton = () => {
           target='_blank'
           rel='noreferrer'
           title={'RSS'}
-          href={'/rss/feed.xml'}>
+          href={'/api/rss'}>
           <i className='fas fa-rss transform hover:scale-125 duration-150 hover:text-green-600' />
         </a>
       )}

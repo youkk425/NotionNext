@@ -20,7 +20,7 @@ export const Footer = ({ title }) => {
         <div className="flex justify-center items-center gap-4 md:gap-6 text-sm font-mono md:-ml-10">
           {siteConfig('ENABLE_RSS') && (
             <a 
-              href="/rss/feed.xml" 
+              href="/api/rss"
               target="_blank" 
               rel="noreferrer"
               className="flex items-center gap-2 text-gray-400 hover:text-gray-200 hover:underline transition-colors py-2"

@@ -67,7 +67,7 @@ const SocialButton = () => {
         </a>
       )}
       {Boolean(siteConfig('ENABLE_RSS')) && (
-        <a target='_blank' rel='noreferrer' title='RSS' href='/rss/feed.xml'>
+        <a target='_blank' rel='noreferrer' title='RSS' href='/api/rss'>
           <i className='fas fa-rss' />
         </a>
       )}

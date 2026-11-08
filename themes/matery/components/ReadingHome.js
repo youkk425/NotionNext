@@ -79,7 +79,7 @@ const ReadingHome = ({
           description={copy.followDescription}
         >
           <a
-            href='/rss/feed.xml'
+            href='/api/rss'
             className='inline-flex items-center gap-2 font-medium text-indigo-700 hover:text-orange-600 dark:text-indigo-300 dark:hover:text-orange-300'
           >
             <IconRss aria-hidden='true' size={18} stroke={1.8} />

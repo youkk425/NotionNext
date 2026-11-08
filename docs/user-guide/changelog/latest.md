@@ -73,6 +73,12 @@
 
 反向代理配置、自定义主题适配和限流边界见 [文章密码与服务端访问](../../developer/POST_ACCESS.zh-CN.md)。
 
+## 待发布：RSS 订阅实时性修复
+
+- 主题的 RSS 订阅链接统一指向动态端点 `/api/rss`（支持 `?format=rss|atom|json`）：Notion 内容更新后，订阅源会随数据缓存失效与页面重建同步刷新，不再依赖重新部署。构建期生成的静态 `public/rss/feed.xml` 仍保留，兼容已订阅旧地址的读者。
+- 动态端点与构建期静态 feed 现在共用同一套生成逻辑（`buildFeed`）：全文输出（`RSS_FULL_CONTENT`）、作者邮箱、`SUB_PATH` 子路径与密码文章摘要保护在两条通道完全一致；`publishDay` 缺失时自动回退 `publishDate`，不再生成 Invalid Date。
+- sitemap 中的 RSS 条目同步指向 `/api/rss`。
+
 ## 4.10.10 发布要点
 
 `4.10.10` 是一次小版本维护发布，集中收录 `v4.10.9` 之后的近期主线改动。普通站点同步最新 `main` 后重新部署即可；只有需要内嵌子页面层级 URL 的站点，才需要新增可选配置。
