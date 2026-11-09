@@ -21,11 +21,11 @@ const NoticeTimeline = ({ notices = [], onClose }) => {
       {/* 弹窗 */}
       {/* 弹窗 */}
       <div
-        className='relative w-full max-w-3xl max-h-[80vh] overflow-y-auto border border-[var(--endspace-border-base)] bg-gray-100/95 shadow-2xl backdrop-blur-sm'
+        className='relative w-full max-w-3xl max-h-[80vh] overflow-y-auto border border-[var(--endspace-border-base)] bg-[var(--endspace-bg-primary)] shadow-2xl backdrop-blur-sm'
         onClick={e => e.stopPropagation()}
       >
         {/* 标题栏 */}
-        <div className='sticky top-0 flex items-center justify-between px-5 py-3 border-b border-[var(--endspace-border-base)] bg-gray-100/95 backdrop-blur-sm z-10'>
+        <div className='sticky top-0 flex items-center justify-between px-5 py-3 border-b border-[var(--endspace-border-base)] bg-[var(--endspace-bg-primary)] backdrop-blur-sm z-10'>
           <div className='flex items-center gap-2 font-mono text-sm font-bold tracking-widest text-[var(--endspace-text-primary)]'>
             <BellFillIcon size={16} className='text-[var(--endspace-accent-yellow)]' />
             公告存档 ARCHIVE
@@ -55,11 +55,11 @@ const NoticeTimeline = ({ notices = [], onClose }) => {
                 }`}
               >
                 {/* 时间轴节点 */}
-                <div className='absolute left-1/2 -translate-x-1/2 top-1.5 w-2.5 h-2.5 rounded-full border-2 border-[var(--endspace-accent-yellow)] bg-[var(--endspace-surface)]' />
+                <div className='absolute left-1/2 -translate-x-1/2 top-1.5 w-2.5 h-2.5 rounded-full border-2 border-[var(--endspace-accent-yellow)] bg-[var(--endspace-bg-secondary)]' />
 
                 {/* 内容卡片 */}
                 <div
-                  className={`w-[calc(50%-1.75rem)] border border-[var(--endspace-border-base)] bg-gray-100/80 backdrop-blur-sm p-4 hover:border-[var(--endspace-accent-yellow)] transition-colors ${
+                  className={`w-[calc(50%-1.75rem)] border border-[var(--endspace-border-base)] bg-[var(--endspace-bg-secondary)] backdrop-blur-sm p-4 hover:border-[var(--endspace-accent-yellow)] transition-colors ${
                     isLeft ? 'mr-auto text-right' : 'ml-auto text-left'
                   }`}
                 >

@@ -879,7 +879,7 @@ export const Style = () => {
         left: 0;
         width: 0%;
         height: 100%;
-        background: #E0E0E0; /* Hover: Darker Grey */
+        background: var(--endspace-bg-tertiary); /* Hover */
         transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         z-index: -1;
       }
@@ -992,7 +992,7 @@ export const Style = () => {
       /* Active State: Always full width with Distinct Color */
       .nier-nav-item.active::before {
         width: 100%;
-        background: #EBEBEB; /* Active: Lighter Grey */
+        background: var(--endspace-bg-tertiary); /* Active */
       }
 
       /* Target the icon specifically if needed to ensure color fill */
@@ -1016,7 +1016,7 @@ export const Style = () => {
       #theme-endspace .nier-nav-item:hover .endspace-menu-icon-wrap i,
       #theme-endspace .nier-nav-item.active .endspace-menu-icon-wrap svg,
       #theme-endspace .nier-nav-item:hover .endspace-menu-icon-wrap svg {
-        color: #000 !important;
+        color: var(--endspace-text-primary) !important;
       }
 
       /* Removed specific active override to keep consistent grey background */

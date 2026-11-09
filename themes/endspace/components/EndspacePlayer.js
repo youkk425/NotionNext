@@ -341,7 +341,7 @@ export const EndspacePlayer = ({ isExpanded, embedded = false }) => {
     return (
       <div className="endspace-player-full relative flex h-full w-full items-center px-0.5">
         {showPlaylist && (
-          <div className="absolute bottom-full left-0 right-0 mb-2 max-h-32 overflow-y-auto rounded-xl border border-gray-200 bg-gray-100/95 p-1 shadow-lg">
+          <div className="absolute bottom-full left-0 right-0 mb-2 max-h-32 overflow-y-auto rounded-xl border border-[var(--endspace-border-base)] bg-[var(--endspace-bg-primary)] p-1 shadow-lg">
             {audioList.map((audio, index) => (
               <button
                 key={index}
@@ -350,7 +350,7 @@ export const EndspacePlayer = ({ isExpanded, embedded = false }) => {
                 className={`flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left transition-colors ${
                   index === currentTrack
                     ? 'bg-black text-white'
-                    : 'text-[var(--endspace-text-secondary)] hover:bg-gray-200 hover:text-black'
+                    : 'text-[var(--endspace-text-secondary)] hover:bg-[var(--endspace-bg-secondary)] hover:text-[var(--endspace-text-primary)]'
                 }`}
               >
                 <span className="w-3 flex-shrink-0 text-center font-mono text-[9px] leading-none">
@@ -395,7 +395,7 @@ export const EndspacePlayer = ({ isExpanded, embedded = false }) => {
             <div className="mt-0.5 truncate text-[10px] leading-tight text-[var(--endspace-text-muted)]">
               {currentAudio.artist || formatTime(currentTime)}
             </div>
-            <div className="mt-1 h-1 overflow-hidden rounded-full bg-gray-200" onClick={handleProgressClick}>
+            <div className="mt-1 h-1 overflow-hidden rounded-full bg-[var(--endspace-bg-secondary)]" onClick={handleProgressClick}>
               <div
                 className="h-full bg-[var(--endspace-accent-yellow)] transition-all duration-200"
                 style={{ width: `${progress}%` }}
@@ -403,7 +403,7 @@ export const EndspacePlayer = ({ isExpanded, embedded = false }) => {
             </div>
           </div>
 
-          <div className="flex h-10 w-5 flex-shrink-0 flex-col items-center justify-between rounded-lg bg-gray-200/70 p-0.5 text-[var(--endspace-text-muted)]">
+          <div className="flex h-10 w-5 flex-shrink-0 flex-col items-center justify-between rounded-lg bg-[var(--endspace-bg-secondary)] p-0.5 text-[var(--endspace-text-muted)]">
             <button
               onClick={playPrev}
               className="flex h-3 w-4 items-center justify-center rounded transition-colors hover:bg-[var(--endspace-accent-yellow)] hover:text-black"

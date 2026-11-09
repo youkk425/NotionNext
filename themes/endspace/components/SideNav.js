@@ -228,7 +228,7 @@ export const SideNav = (props) => {
           const itemContent = (
             <div
               ref={el => itemRefs.current[item.name] = el}
-              className={`nier-nav-item relative h-[3rem] flex items-center cursor-pointer group transition-colors duration-300 hover:bg-[#d4d4d8] ${isActive ? 'active bg-[#d4d4d8]' : ''}`}
+              className={`nier-nav-item relative h-[3rem] flex items-center cursor-pointer group transition-colors duration-300 hover:bg-[var(--endspace-bg-tertiary)] ${isActive ? 'active bg-[var(--endspace-bg-tertiary)]' : ''}`}
               onClick={hasSubMenu ? toggleSubMenu : undefined}
               role={hasSubMenu ? 'button' : undefined}
               tabIndex={hasSubMenu ? 0 : undefined}
@@ -288,7 +288,7 @@ export const SideNav = (props) => {
       {/* Music Player, Contact, and Toggle */}
       <div className="flex-shrink-0 flex flex-col justify-end h-auto pb-4">
         <div className={`mx-auto transition-[width] duration-300 ease-out ${isHovered ? 'w-[13.5rem]' : 'w-[3rem]'}`}>
-          <div className={`overflow-visible border border-gray-200 bg-gray-100/95 shadow-sm transition-[border-radius] duration-200 ${isHovered ? 'h-[7rem] rounded-2xl px-3 py-2' : 'h-[6.75rem] rounded-full px-1 py-2'}`}>
+          <div className={`overflow-visible border border-[var(--endspace-border-base)] bg-[var(--endspace-bg-primary)] shadow-sm transition-[border-radius] duration-200 ${isHovered ? 'h-[7rem] rounded-2xl px-3 py-2' : 'h-[6.75rem] rounded-full px-1 py-2'}`}>
             {/* Notice or Music Player: notice takes priority when configured */}
             <div className={`flex items-center justify-center overflow-hidden ${isHovered ? 'h-[3rem]' : 'h-10'}`}>
               {notice?.title ? (
