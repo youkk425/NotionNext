@@ -112,7 +112,7 @@ export const SearchInput = ({ keyword = '', locale, compact = false, titleMeta =
           {/* Search Button (Enter) */}
           <button
             type="submit"
-            className="absolute right-1 top-1 bottom-1 px-3 bg-[var(--endspace-bg-tertiary)] text-black hover:bg-[#FBFB46] hover:text-black transition-colors font-bold text-xs border-l border-[var(--endspace-border-base)]"
+            className="absolute right-1 top-1 bottom-1 px-3 bg-[var(--endspace-bg-tertiary)] text-[var(--endspace-text-primary)] hover:bg-[#FBFB46] hover:text-black transition-colors font-bold text-xs border-l border-[var(--endspace-border-base)]"
           >
             GO
           </button>

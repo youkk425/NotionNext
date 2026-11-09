@@ -45,7 +45,7 @@ const FloatingRecentLogs = (props) => {
 
         {/* Expanded Content Drawer */}
         <div 
-            className={`transition-opacity duration-300 bg-[#f7f9fe] border border-[var(--endspace-border-base)] shadow-2xl overflow-hidden ${
+            className={`transition-opacity duration-300 bg-[var(--endspace-bg-primary)] border border-[var(--endspace-border-base)] shadow-2xl overflow-hidden ${
                 isExpanded ? 'opacity-100 visible w-full' : 'opacity-0 invisible w-0 border-0'
             }`}
              style={{

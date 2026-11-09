@@ -468,7 +468,7 @@ export const Style = () => {
 
       .endspace-btn:hover {
         background: var(--endspace-border-active);
-        color: white;
+        color: #000;
         transform: translateY(-1px);
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       }
@@ -476,7 +476,7 @@ export const Style = () => {
       .endspace-button-primary {
         background: var(--endspace-border-active);
         border: none;
-        color: white;
+        color: #000;
         padding: 0.75rem 1.5rem;
         font-family: 'JetBrains Mono', monospace;
         font-weight: 700;
@@ -488,6 +488,7 @@ export const Style = () => {
 
       .endspace-button-primary:hover {
         background: #2563eb;
+        color: #fff;
         transform: translateY(-1px);
       }
 
@@ -703,7 +704,7 @@ export const Style = () => {
 
       .ef-button:hover {
         background: var(--endspace-border-active);
-        color: white;
+        color: #000;
         border-color: var(--endspace-border-active);
       }
 

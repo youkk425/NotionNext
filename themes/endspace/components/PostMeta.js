@@ -63,7 +63,7 @@ export const PostMeta = ({ post }) => {
             {post.tags && post.tags.length > 0 && (
                 <div className="flex items-center gap-2 ml-auto">
                     {post.tags.map(tag => (
-                        <span key={tag} className="px-2 py-1 bg-[var(--endspace-bg-secondary)] text-[var(--endspace-text-secondary)] text-xs rounded hover:bg-[var(--endspace-text-primary)] hover:text-white transition-colors cursor-pointer">
+                        <span key={tag} className="px-2 py-1 bg-[var(--endspace-bg-secondary)] text-[var(--endspace-text-secondary)] text-xs rounded hover:bg-[var(--endspace-text-primary)] hover:text-[var(--endspace-bg-primary)] transition-colors cursor-pointer">
                             #{tag.toUpperCase()}
                         </span>
                     ))}

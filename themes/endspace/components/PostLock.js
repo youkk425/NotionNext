@@ -25,7 +25,7 @@ export const PostLock = ({ validPassword }) => {
           <div className="inline-block p-6 bg-yellow-400/10 border border-yellow-400/30 mb-4">
             <IconLock size={48} stroke={1.5} className="text-yellow-400" />
           </div>
-          <h2 className="text-2xl font-bold text-white mb-2 tech-text">
+          <h2 className="text-2xl font-bold text-[var(--endspace-text-primary)] mb-2 tech-text">
             RESTRICTED ACCESS
           </h2>
           <p className="text-gray-400 text-sm">

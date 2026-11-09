@@ -223,8 +223,8 @@ export const MobileNav = (props) => {
             const isOpen = openSubMenuId === item.id
             const className = `flex items-center gap-4 py-3 w-full transition-all group ${
               activeTab === item.name
-                ? 'text-black font-bold'
-                : 'text-[var(--endspace-text-secondary)] hover:text-black'
+                ? 'text-[var(--endspace-text-primary)] font-bold'
+                : 'text-[var(--endspace-text-secondary)] hover:text-[var(--endspace-text-primary)]'
             }`
 
             if (!hasSubMenu) {
@@ -263,9 +263,9 @@ export const MobileNav = (props) => {
                         key={subItem.id || subItem.path}
                         href={subItem.path}
                         target={subItem.target}
-                        className={`block py-2 pl-4 pr-2 text-sm transition-colors hover:text-black ${
+                        className={`block py-2 pl-4 pr-2 text-sm transition-colors hover:text-[var(--endspace-text-primary)] ${
                           pathMatches(router.asPath, subItem.path)
-                            ? 'font-bold text-black'
+                            ? 'font-bold text-[var(--endspace-text-primary)]'
                             : 'text-[var(--endspace-text-secondary)]'
                         }`}
                       >

@@ -492,7 +492,7 @@ export const EndspacePlayer = ({ isExpanded, embedded = false }) => {
           {/* Playlist Toggle Button */}
           <button 
             onClick={(e) => { e.stopPropagation(); setShowPlaylist(!showPlaylist) }}
-            className={`w-6 h-6 flex items-center justify-center rounded transition-colors ${showPlaylist ? 'bg-black text-white' : 'text-[var(--endspace-text-muted)] hover:text-black'}`}
+            className={`w-6 h-6 flex items-center justify-center rounded transition-colors ${showPlaylist ? 'bg-black text-white' : 'text-[var(--endspace-text-muted)] hover:text-[var(--endspace-text-primary)]'}`}
             title="Playlist"
           >
             <IconList size={12} stroke={1.5} />
@@ -502,14 +502,14 @@ export const EndspacePlayer = ({ isExpanded, embedded = false }) => {
           <div className="flex items-center gap-0.5">
             <button 
               onClick={playPrev}
-              className="w-5 h-5 flex items-center justify-center text-[var(--endspace-text-muted)] hover:text-black transition-colors"
+              className="w-5 h-5 flex items-center justify-center text-[var(--endspace-text-muted)] hover:text-[var(--endspace-text-primary)] transition-colors"
               title="Previous"
             >
               <IconPlayerTrackPrev size={11} stroke={1.5} />
             </button>
             <button 
               onClick={playNext}
-              className="w-5 h-5 flex items-center justify-center text-[var(--endspace-text-muted)] hover:text-black transition-colors"
+              className="w-5 h-5 flex items-center justify-center text-[var(--endspace-text-muted)] hover:text-[var(--endspace-text-primary)] transition-colors"
               title="Next"
             >
               <IconPlayerTrackNext size={11} stroke={1.5} />

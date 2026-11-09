@@ -90,7 +90,7 @@ const FloatingToc = ({ toc }) => {
       <div 
         className={`transition-all duration-300 ease-out ${
           isExpanded 
-            ? 'w-64 bg-[#f7f9fe] border border-[var(--endspace-border-base)] shadow-lg rounded-xl' 
+            ? 'w-64 bg-[var(--endspace-bg-primary)] border border-[var(--endspace-border-base)] shadow-lg rounded-xl'
             : 'w-10'
         }`}
         style={{
@@ -148,7 +148,7 @@ const FloatingToc = ({ toc }) => {
                       href={`#${id}`}
                       className={`block py-1 text-xs transition-all duration-200 hover:translate-x-1 ${
                         isActive 
-                          ? 'text-black font-bold' 
+                          ? 'text-[var(--endspace-text-primary)] font-bold'
                           : 'text-[var(--endspace-text-secondary)] hover:text-[var(--endspace-text-primary)]'
                       }`}
                       style={{ 
