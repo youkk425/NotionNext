@@ -12,14 +12,14 @@ export const BlogListArchive = ({ archiveTitle, archivePosts }) => {
         <div className="text-6xl font-black text-[var(--endspace-text-muted)] opacity-20 absolute -top-4 -left-2 select-none z-0">
           LOG_{archiveTitle.split('-')[0]}
         </div>
-        <h2 className="text-3xl font-bold text-black tech-text z-10 relative pl-2">
+        <h2 className="text-3xl font-bold text-[var(--endspace-text-primary)] tech-text z-10 relative pl-2">
           {archiveTitle}
         </h2>
         <span className="text-xs text-[var(--endspace-text-secondary)] mb-2 tech-text z-10">
           {'// '}{archivePosts[archiveTitle]?.length}_ENTRIES_FOUND
         </span>
         <div className="flex-1" />
-        <div className="text-xs text-black mb-2 tech-text">
+        <div className="text-xs text-[var(--endspace-text-secondary)] mb-2 tech-text">
           STATUS: ARCHIVED
         </div>
       </div>
@@ -47,7 +47,7 @@ export const BlogListArchive = ({ archiveTitle, archivePosts }) => {
 
                 {/* Title */}
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-sm md:text-base font-bold text-black group-hover:text-black truncate transition-colors">
+                  <h3 className="text-sm md:text-base font-bold text-[var(--endspace-text-primary)] group-hover:text-black truncate transition-colors">
                     {post.title}
                   </h3>
                   {/* Tags as tiny indicators */}
