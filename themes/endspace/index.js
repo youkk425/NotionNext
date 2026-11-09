@@ -17,6 +17,7 @@ import { BlogListScroll } from './components/BlogListScroll'
 import { Footer } from './components/Footer'
 import { PostLock } from './components/PostLock'
 import { PostMeta } from './components/PostMeta'
+import EndspaceExpirationNotice from './components/EndspaceExpirationNotice'
 import SearchInput from './components/SearchInput'
 import { SideBar } from './components/SideBar'
 import { SideNav } from './components/SideNav'
@@ -222,6 +223,7 @@ const LayoutSlug = (props) => {
                </div>
                
               <div className="relative z-10">
+                <EndspaceExpirationNotice post={post} />
                 <NotionPage post={post} />
               </div>
 
